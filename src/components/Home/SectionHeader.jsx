@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import kosanImage from "../../assets/images/kosan.jpg";
+import { Link } from "react-router-dom";
 
 const SectionHeader = () => {
   return (
@@ -22,7 +23,9 @@ const SectionHeader = () => {
           facilities,
         </p>
         <p style={{ marginBottom: 24 }}>only at Mak Ida</p>
-        <Button variant="secondary">Choose a room</Button>
+        <Link to={"/rooms"}>
+          <Button variant="secondary">Choose a room</Button>
+        </Link>
       </div>
     </div>
   );
@@ -39,7 +42,6 @@ const styles = {
     position: "absolute",
     top: 200,
     left: 120,
-    minWidth: 600,
     padding: 32,
     backgroundColor: "rgba(235, 235, 235, 0.7)",
     borderRadius: 25,

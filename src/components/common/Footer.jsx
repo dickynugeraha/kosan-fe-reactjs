@@ -25,9 +25,6 @@ const Footer = () => {
               Kosak Mak Ida Gg. Gagak I No.1, Sukaluyu, Kecamatan Cibeunying
               Kota Bandung, Jawa Barat 40123
             </p>
-            <p className="text-muted">
-              <BsCcCircle /> Ricky Amedio Raditya
-            </p>
             <a
               href="https://wa.me/6287824807924"
               className="text-muted text-decoration-none"
@@ -37,6 +34,9 @@ const Footer = () => {
                 <p className="ms-2">0878-2480-7924</p>
               </div>
             </a>
+            <p className="text-muted mt-3">
+              <BsCcCircle /> Ricky Amedio Raditya
+            </p>
           </div>
         </div>
       </div>

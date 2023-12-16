@@ -1,23 +1,15 @@
 import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
 
 import SectionHeader from "../../components/Home/SectionHeader";
 import SectionOurRoom from "../../components/Home/SectionOurRoom";
 import Footer from "../../components/common/Footer";
 import SectionFacility from "../../components/Home/SectionFacility";
+import NavbarApp from "../../components/common/NavbarApp";
 
 const Home = () => {
   return (
     <>
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand href="#home">Kosan Mak Ida</Navbar.Brand>
-          <Nav className="ms-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Login</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <NavbarApp />
       <SectionHeader />
       <div style={{ height: 100 }}></div>
       <SectionOurRoom />

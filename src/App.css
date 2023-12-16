@@ -2,6 +2,16 @@
   text-align: center;
 }
 
+body,
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.lobster-font {
+  font-family: "DM Serif Display", serif;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
