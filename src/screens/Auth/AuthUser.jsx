@@ -44,7 +44,9 @@ const AuthUser = () => {
             {isLoginSection && (
               <>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Email</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Email
+                  </span>
                   <input
                     value={inputLogin.email}
                     name="email"
@@ -61,7 +63,9 @@ const AuthUser = () => {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Password</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Password
+                  </span>
                   <input
                     value={inputLogin.password}
                     name="password"
@@ -82,7 +86,9 @@ const AuthUser = () => {
             {!isLoginSection && (
               <>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Name</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Name
+                  </span>
                   <input
                     value={inputRegister.name}
                     className="form-control"
@@ -100,7 +106,9 @@ const AuthUser = () => {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Email</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Email
+                  </span>
                   <input
                     value={inputRegister.email}
                     className="form-control"
@@ -118,7 +126,9 @@ const AuthUser = () => {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Address</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Address
+                  </span>
                   <textarea
                     className="form-control"
                     type="text"
@@ -137,7 +147,9 @@ const AuthUser = () => {
                   </textarea>
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text">Password</span>
+                  <span class="input-group-text" style={{ width: 100 }}>
+                    Password
+                  </span>
                   <input
                     value={inputRegister.password}
                     className="form-control"

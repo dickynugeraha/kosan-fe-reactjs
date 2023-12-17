@@ -3,6 +3,7 @@ import NavbarApp from "../../components/common/NavbarApp";
 import Footer from "../../components/common/Footer";
 import { Container } from "react-bootstrap";
 import RoomList from "../../components/Room/RoomList";
+import RoomDescription from "../../components/Room/RoomDescription";
 
 const Rooms = () => {
   const data = [
@@ -66,17 +67,38 @@ const Rooms = () => {
       description: "Lantai dua ruangan 1",
       status: "Unvailable",
     },
+    {
+      title: "107",
+      price: 725000,
+      photo: [
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
+      description: "Lantai dua ruangan 1",
+      status: "Unvailable",
+    },
+    {
+      title: "108",
+      price: 725000,
+      photo: [
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
+      description: "Lantai dua ruangan 1",
+      status: "Unvailable",
+    },
   ];
 
   return (
     <>
       <NavbarApp />
-      <Container className="d-flex justify-content-center overflow-auto">
-        <div style={{ width: "90%", marginTop: 60 }}>
-          <h1 className="mb-4">ROOMS</h1>
+      <Container className="d-flex justify-content-center overflow-auto mb-5">
+        <div style={{ width: "100%", marginTop: 60 }}>
+          <h3 className="mb-4 fw-bold text-start">Rooms.</h3>
           <RoomList rooms={data} />
         </div>
       </Container>
+      <RoomDescription />
       <Footer />
     </>
   );

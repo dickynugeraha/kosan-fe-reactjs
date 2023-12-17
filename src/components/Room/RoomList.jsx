@@ -124,7 +124,6 @@ const RoomList = ({ rooms }) => {
 
 const styles = {
   roomBox: {
-    marginBottom: 80,
     display: "grid",
     gap: "18px",
     gridTemplateColumns: "auto auto auto",

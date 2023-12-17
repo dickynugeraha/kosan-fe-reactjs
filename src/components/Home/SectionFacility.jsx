@@ -30,7 +30,7 @@ const SectionFacility = () => {
         </Card>
         <Card
           style={{ width: "18rem", borderColor: "#84c48e" }}
-          className="p-3 card"
+          className="p-3 cardCustom"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">
@@ -47,7 +47,7 @@ const SectionFacility = () => {
         </Card>
         <Card
           style={{ width: "18rem", borderColor: "#84a9c4" }}
-          className="p-3 card"
+          className="p-3 cardCustom"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">
