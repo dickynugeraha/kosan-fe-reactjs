@@ -9,59 +9,71 @@ const Rooms = () => {
     {
       title: "101",
       price: 800000,
-      photo:
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai satu ruangan 1",
       status: "Available",
     },
     {
-      title: "201",
+      title: "102",
       price: 780000,
-      photo:
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai dua ruangan 1",
       status: "Available",
     },
     {
-      title: "201",
-      price: 780000,
-      photo:
+      title: "103",
+      price: 720000,
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai dua ruangan 1",
       status: "Available",
     },
     {
-      title: "201",
-      price: 780000,
-      photo:
+      title: "104",
+      price: 790000,
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai dua ruangan 1",
       status: "Available",
     },
     {
-      title: "201",
-      price: 780000,
-      photo:
+      title: "105",
+      price: 710000,
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai dua ruangan 1",
-      status: "Available",
+      status: "Unvailable",
     },
     {
-      title: "201",
-      price: 780000,
-      photo:
+      title: "106",
+      price: 725000,
+      photo: [
         "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+        "https://www.rukita.co/stories/wp-content/uploads/2021/08/rekomendasi-kost-rukita-yang-punya-sarana-olahraga-thamrin.jpg",
+      ],
       description: "Lantai dua ruangan 1",
-      status: "Available",
+      status: "Unvailable",
     },
   ];
 
   return (
     <>
       <NavbarApp />
-      <Container className="d-flex justify-content-center">
-        <div style={{ height: "100vh", width: "80%", marginTop: 60 }}>
-          <h1 className="mb-3">ROOMS</h1>
+      <Container className="d-flex justify-content-center overflow-auto">
+        <div style={{ width: "90%", marginTop: 60 }}>
+          <h1 className="mb-4">ROOMS</h1>
           <RoomList rooms={data} />
         </div>
       </Container>

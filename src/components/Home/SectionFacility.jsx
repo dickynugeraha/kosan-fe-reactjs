@@ -13,7 +13,7 @@ const SectionFacility = () => {
       <div className="d-flex justify-content-around my-5">
         <Card
           style={{ width: "18rem", borderColor: "#ed5898" }}
-          className="p-3 card"
+          className="p-3 cardCustom"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">

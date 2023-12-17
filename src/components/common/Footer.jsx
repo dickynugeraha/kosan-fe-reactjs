@@ -1,5 +1,4 @@
 import React from "react";
-import { FaWhatsapp } from "react-icons/fa";
 import { BsCcCircle } from "react-icons/bs";
 
 const Footer = () => {
@@ -29,10 +28,7 @@ const Footer = () => {
               href="https://wa.me/6287824807924"
               className="text-muted text-decoration-none"
             >
-              <div className="d-flex">
-                <FaWhatsapp size={32} color="#128c7e" />
-                <p className="ms-2">0878-2480-7924</p>
-              </div>
+              <p>0878-2480-7924</p>
             </a>
             <p className="text-muted mt-3">
               <BsCcCircle /> Ricky Amedio Raditya
