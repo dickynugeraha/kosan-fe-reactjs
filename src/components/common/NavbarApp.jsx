@@ -28,17 +28,15 @@ const NavbarApp = () => {
               Profile
             </Link>
           </Nav.Link>
-          {location.pathname !== "/auth" && (
-            <Nav.Link className="me-0">
-              <Link
-                to={"/auth"}
-                className="text-decoration-none me-0"
-                style={{ color: "white" }}
-              >
-                Login
-              </Link>
-            </Nav.Link>
-          )}
+          <Nav.Link>
+            <Link
+              to={"/auth"}
+              className="text-decoration-none"
+              style={{ color: "white" }}
+            >
+              Login
+            </Link>
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

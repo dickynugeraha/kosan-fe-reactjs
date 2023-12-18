@@ -4,6 +4,7 @@ import Home from "./screens/Home/Home";
 import Rooms from "./screens/Rooms/Rooms";
 import AuthUser from "./screens/Auth/AuthUser";
 import Profile from "./screens/Profile/Profile";
+import AuthAdmin from "./screens/Auth/AuthAdmin";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" exact Component={Home} />
           <Route path="/rooms" Component={Rooms} />
           <Route path="/auth" Component={AuthUser} />
+          <Route path="/login-admin" Component={AuthAdmin} />
           <Route path="/profile" Component={Profile} />
         </Routes>
       </div>

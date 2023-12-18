@@ -15,14 +15,8 @@ const AuthUser = () => {
 
   const submitedForm = () => {
     if (isLoginSection) {
-      console.log(inputLogin.email);
-      console.log(inputLogin.password);
       setInputLogin({ email: "", password: "" });
     } else {
-      console.log(inputRegister.name);
-      console.log(inputRegister.email);
-      console.log(inputRegister.address);
-      console.log(inputRegister.password);
       setInputRegister({ name: "", email: "", address: "", password: "" });
     }
   };
