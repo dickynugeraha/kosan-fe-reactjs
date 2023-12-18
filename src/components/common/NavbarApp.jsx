@@ -19,11 +19,20 @@ const NavbarApp = () => {
           </Link>
         </Navbar.Brand>
         <Nav className="ms-auto">
+          <Nav.Link className="me-4">
+            <Link
+              to={"/profile"}
+              className="text-decoration-none"
+              style={{ color: "white" }}
+            >
+              Profile
+            </Link>
+          </Nav.Link>
           {location.pathname !== "/auth" && (
-            <Nav.Link>
+            <Nav.Link className="me-0">
               <Link
                 to={"/auth"}
-                className="text-decoration-none"
+                className="text-decoration-none me-0"
                 style={{ color: "white" }}
               >
                 Login
