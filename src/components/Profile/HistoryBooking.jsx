@@ -10,6 +10,7 @@ const HistoryBooking = () => {
             <th>No</th>
             <th>Start Booking</th>
             <th>End Booking</th>
+            <th>Room</th>
             <th>Payment Method</th>
           </tr>
         </thead>
@@ -18,18 +19,21 @@ const HistoryBooking = () => {
             <td>1</td>
             <td>12 Agustus 2023</td>
             <td>12 Desember 2023</td>
+            <td>101</td>
             <td>OVO</td>
           </tr>
           <tr>
             <td>2</td>
             <td>12 Agustus 2022</td>
             <td>12 Desember 2022</td>
+            <td>102</td>
             <td>Gopay</td>
           </tr>
           <tr>
             <td>3</td>
             <td>12 Agustus 2022</td>
             <td>12 Desember 2022</td>
+            <td>103</td>
             <td>Gopay</td>
           </tr>
         </tbody>
