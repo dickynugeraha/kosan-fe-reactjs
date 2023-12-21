@@ -12,6 +12,7 @@ import Profile from "./screens/Profile/Profile";
 import AuthAdmin from "./screens/Auth/AuthAdmin";
 import Customers from "./screens/Admin/Customers";
 import Transactions from "./screens/Admin/Transactions";
+import RoomsAdmin from "./screens/Admin/RoomsAdmin";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/admin" element={<Navigate to="/customers" />} />
           <Route path="/customers" Component={Customers} />
           <Route path="/transactions" Component={Transactions} />
+          <Route path="/rooms-admin" Component={RoomsAdmin} />
         </Routes>
       </div>
     </Router>

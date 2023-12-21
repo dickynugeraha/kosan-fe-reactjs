@@ -43,6 +43,15 @@ const SidebarAdmin = ({ children }) => {
               Transactions
             </Link>
           </CDBSidebarMenuItem>
+          <CDBSidebarMenuItem>
+            <Link
+              to={"/rooms-admin"}
+              className="text-decoration-none"
+              style={{ color: "white" }}
+            >
+              Rooms
+            </Link>
+          </CDBSidebarMenuItem>
         </CDBSidebarMenu>
       </CDBSidebar>
       <div

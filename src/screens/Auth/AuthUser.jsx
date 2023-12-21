@@ -1,23 +1,66 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import NavbarApp from "../../components/common/NavbarApp";
 import { Button, Card } from "react-bootstrap";
+import APIAuth from "../../api/auth";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const AuthUser = () => {
   const [isLoginSection, setIsLoginSection] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [inputLogin, setInputLogin] = useState({ email: "", password: "" });
   const [inputRegister, setInputRegister] = useState({
     name: "",
     email: "",
     address: "",
+    job: "",
+    phone: "",
     password: "",
   });
 
-  const submitedForm = () => {
+  const submitedForm = async () => {
     if (isLoginSection) {
+      setIsLoading(true);
+      const response = await APIAuth.loginUser({
+        payload: { email: inputLogin.email, password: inputLogin.password },
+      });
+      console.log(response);
+      if (response.success) {
+        toast.success("Successfully login.", {
+          duration: 4000,
+        });
+      } else {
+        toast.error("Failed login, please check email or password.", {
+          duration: 4000,
+        });
+      }
       setInputLogin({ email: "", password: "" });
+      setIsLoading(false);
     } else {
+      setIsLoading(true);
+      const response = await APIAuth.register({
+        payload: {
+          name: inputRegister.name,
+          email: inputRegister.email,
+          address: inputRegister.address,
+          job: inputRegister.job,
+          phone: inputRegister.phone,
+          password: inputRegister.password,
+        },
+      });
+      if (response.success) {
+        toast.success("Successfully register.", {
+          duration: 4000,
+        });
+      } else {
+        toast.error("Failed register, email is available.", {
+          duration: 4000,
+        });
+      }
+      setIsLoginSection(true);
       setInputRegister({ name: "", email: "", address: "", password: "" });
+      setIsLoading(false);
     }
   };
 
@@ -25,8 +68,8 @@ const AuthUser = () => {
     <>
       <NavbarApp />
       <div className="mt-5">
+        <Toaster />
         <h1 className="mb-4">{isLoginSection ? "Login" : "Register"}</h1>
-
         <div className="d-flex justify-content-center">
           <Card
             style={{
@@ -38,7 +81,7 @@ const AuthUser = () => {
             {isLoginSection && (
               <>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
+                  <span className="input-group-text" style={{ width: 100 }}>
                     Email
                   </span>
                   <input
@@ -57,7 +100,7 @@ const AuthUser = () => {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
+                  <span className="input-group-text" style={{ width: 100 }}>
                     Password
                   </span>
                   <input
@@ -80,7 +123,7 @@ const AuthUser = () => {
             {!isLoginSection && (
               <>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
+                  <span className="input-group-text" style={{ width: 100 }}>
                     Name
                   </span>
                   <input
@@ -94,13 +137,15 @@ const AuthUser = () => {
                           email: prevState.email,
                           address: prevState.address,
                           password: prevState.password,
+                          job: prevState.job,
+                          phone: prevState.phone,
                         };
                       })
                     }
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
+                  <span className="input-group-text" style={{ width: 100 }}>
                     Email
                   </span>
                   <input
@@ -114,16 +159,19 @@ const AuthUser = () => {
                           email: e.target.value,
                           address: prevState.address,
                           password: prevState.password,
+                          phone: prevState.phone,
+                          job: prevState.job,
                         };
                       })
                     }
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
-                    Address
+                  <span className="input-group-text" style={{ width: 100 }}>
+                    Job
                   </span>
-                  <textarea
+                  <input
+                    value={inputRegister.job}
                     className="form-control"
                     type="text"
                     onChange={(e) =>
@@ -131,8 +179,54 @@ const AuthUser = () => {
                         return {
                           name: prevState.name,
                           email: prevState.email,
+                          job: e.target.value,
+                          phone: prevState.phone,
+                          address: prevState.address,
+                          password: prevState.password,
+                        };
+                      })
+                    }
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <span className="input-group-text" style={{ width: 100 }}>
+                    Phone
+                  </span>
+                  <input
+                    value={inputRegister.phone}
+                    className="form-control"
+                    type="number"
+                    onChange={(e) =>
+                      setInputRegister((prevState) => {
+                        return {
+                          name: prevState.name,
+                          email: prevState.email,
+                          address: prevState.address,
+                          password: prevState.password,
+                          phone: e.target.value,
+                          job: prevState.job,
+                        };
+                      })
+                    }
+                  />
+                </div>
+                <div className="input-group mb-3">
+                  <span className="input-group-text" style={{ width: 100 }}>
+                    Address
+                  </span>
+                  <textarea
+                    className="form-control"
+                    type="text"
+                    value={inputRegister.address}
+                    onChange={(e) =>
+                      setInputRegister((prevState) => {
+                        return {
+                          name: prevState.name,
+                          email: prevState.email,
                           address: e.target.value,
                           password: prevState.password,
+                          job: prevState.job,
+                          phone: prevState.phone,
                         };
                       })
                     }
@@ -141,7 +235,7 @@ const AuthUser = () => {
                   </textarea>
                 </div>
                 <div className="input-group mb-3">
-                  <span class="input-group-text" style={{ width: 100 }}>
+                  <span className="input-group-text" style={{ width: 100 }}>
                     Password
                   </span>
                   <input
@@ -155,6 +249,8 @@ const AuthUser = () => {
                           email: prevState.email,
                           address: prevState.address,
                           password: e.target.value,
+                          job: prevState.job,
+                          phone: prevState.phone,
                         };
                       })
                     }
@@ -178,14 +274,28 @@ const AuthUser = () => {
                   Login
                 </p>
               )}
-
-              <Button
-                style={{ width: 100 }}
-                variant="secondary"
-                onClick={submitedForm}
-              >
-                {isLoginSection ? "Login" : "Register"}
-              </Button>
+              {isLoading ? (
+                <div
+                  style={{ width: 100 }}
+                  className="d-flex justify-content-center align-items-center"
+                >
+                  <ClipLoader
+                    color={"grey"}
+                    loading={isLoading}
+                    size={20}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </div>
+              ) : (
+                <Button
+                  style={{ width: 100 }}
+                  variant="secondary"
+                  onClick={submitedForm}
+                >
+                  {isLoginSection ? "Login" : "Register"}
+                </Button>
+              )}
             </div>
           </Card>
         </div>
