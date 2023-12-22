@@ -1,6 +1,6 @@
 import React from "react";
 import SidebarAdmin from "../../components/common/SidebarAdmin";
-import { Button, Card, Table } from "react-bootstrap";
+import { Card, Table } from "react-bootstrap";
 
 const Customers = () => {
   return (

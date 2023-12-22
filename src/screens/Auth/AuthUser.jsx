@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import NavbarApp from "../../components/common/NavbarApp";
-import { Button, Card } from "react-bootstrap";
-import APIAuth from "../../api/auth";
 import ClipLoader from "react-spinners/ClipLoader";
 
+import NavbarApp from "../../components/common/NavbarApp";
+import { Button, Card } from "react-bootstrap";
+import API from "../../api/source-api";
+import { AuthContext } from "../../store/context/auth-context";
+import { useNavigate } from "react-router";
+
 const AuthUser = () => {
+  const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
+
   const [isLoginSection, setIsLoginSection] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  // const [isRedirect, setisRedirect] = useState(false);
 
   const [inputLogin, setInputLogin] = useState({ email: "", password: "" });
   const [inputRegister, setInputRegister] = useState({
@@ -19,17 +26,34 @@ const AuthUser = () => {
     password: "",
   });
 
+  // useEffect(() => {
+  //   if (authContext.isLogin()) {
+  //     const isLogin = authContext.isLogin();
+
+  //     if (isLogin) {
+  //       setisRedirect(true);
+  //     }
+  //   }
+  // }, [authContext]);
+
   const submitedForm = async () => {
     if (isLoginSection) {
       setIsLoading(true);
-      const response = await APIAuth.loginUser({
+      const response = await API.loginUser({
         payload: { email: inputLogin.email, password: inputLogin.password },
       });
-      console.log(response);
-      if (response.success) {
-        toast.success("Successfully login.", {
-          duration: 4000,
+      if (response?.success) {
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("user_id", response.data.user_id);
+
+        authContext.login({
+          token: response.data.token,
+          user_id: response.data.user_id,
         });
+        // toast.success("Successfully login.", {
+        //   duration: 4000,
+        // });
+        navigate("/");
       } else {
         toast.error("Failed login, please check email or password.", {
           duration: 4000,
@@ -39,7 +63,7 @@ const AuthUser = () => {
       setIsLoading(false);
     } else {
       setIsLoading(true);
-      const response = await APIAuth.register({
+      const response = await API.register({
         payload: {
           name: inputRegister.name,
           email: inputRegister.email,

@@ -1,8 +1,7 @@
-import React, { Children } from "react";
+import React from "react";
 
 import {
   CDBSidebar,
-  CDBSidebarContent,
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem,

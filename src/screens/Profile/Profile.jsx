@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavbarApp from "../../components/common/NavbarApp";
 import Footer from "../../components/common/Footer";
 import { Card, Col, Container, Row, Nav } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 import UserInfo from "../../components/Profile/UserInfo";
 import HistoryBooking from "../../components/Profile/HistoryBooking";
 import CurrentBooking from "../../components/Profile/CurrentBooking";
 
 const Profile = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    console.log(token);
+
+    if (!token) {
+      navigate("/");
+      return;
+    }
+  }, []);
+
   const [screenSection, setScreenSection] = useState(0);
 
   const attributeHistory = screenSection === 0 ? "active" : "";
