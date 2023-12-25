@@ -38,6 +38,21 @@ export default {
       return err.response;
     }
   },
+  getAllUser: async ({ token }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/users`,
+        method: "get",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
   // =================================================== Profile =================================================
   getSingleUser: async ({ user_id, token }) => {
     try {
@@ -46,6 +61,7 @@ export default {
         method: "get",
         headers: {
           ...headers,
+
           Authorization: `Bearer ${token}`,
         },
       });
@@ -55,14 +71,13 @@ export default {
     }
   },
   // =================================================== Rooms =====================================================
-  getRooms: async ({ token }) => {
+  getRooms: async () => {
     try {
       const response = await axios({
-        url: `${mainUrl}/rooms`,
+        url: `${mainUrl}/all-room`,
         method: "get",
         headers: {
           ...headers,
-          Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
@@ -70,4 +85,22 @@ export default {
       return err.response;
     }
   },
+  addRoom: async ({ token, payload }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/rooms`,
+        method: "post",
+        data: payload,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  //  ===========================================
 };
