@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { Button, Carousel, Modal } from "react-bootstrap";
 import { FaCheckCircle, FaWhatsapp } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
+import { photoUrl } from "../../api/const";
+import toast, { Toaster } from "react-hot-toast";
 
 const RoomList = ({ rooms }) => {
+  const token = sessionStorage.getItem("token");
+
   const [choosenId, setChoosenId] = useState("");
   const [showModal, setShowModal] = useState(false);
 
@@ -15,31 +19,38 @@ const RoomList = ({ rooms }) => {
     setShowModal(false);
   };
 
-  const choosenRoom = rooms.find((room) => room.title === choosenId);
+  const choosenRoom = rooms.find((room) => room.number_room === choosenId);
+
+  const photoItem = () => {
+    const photos = [];
+    for (let index = 1; index < choosenRoom?.photos?.length; index++) {
+      photos.push(choosenRoom?.photos[index]);
+    }
+    return photos;
+  };
 
   return (
     <div style={styles.roomBox}>
       {rooms.map((room, index) => (
-        <>
+        <div key={index}>
           <div
             style={styles.roomItem}
             onClick={() => {
-              setChoosenId(room.title);
+              setChoosenId(room.number_room);
               openModal();
             }}
-            key={room.title}
           >
             <div className="d-flex">
               <div className="col-md-6" style={{ width: 150, height: 100 }}>
                 <img
-                  src={room.photo[0]}
+                  src={`${photoUrl}/room_images/${room.photos[1]}`}
                   style={{ height: "100%", width: "100%", objectFit: "cover" }}
                 />
               </div>
               <div className="col-md-6 text-start ms-3">
-                <p className="mb-1"> Number {room.title}</p>
+                <p className="mb-1"> Number {room.number_room}</p>
                 <p className="mb-3">Rp. {room.price}</p>
-                {room.status === "Available" ? (
+                {room.status === "available" ? (
                   <div className="d-flex">
                     <FaCheckCircle color="#59de7c" size={24} />
                     <p className="ms-2" style={{ color: "#59de7c" }}>
@@ -57,7 +68,7 @@ const RoomList = ({ rooms }) => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       ))}
 
       <Modal
@@ -67,18 +78,35 @@ const RoomList = ({ rooms }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Room {choosenRoom?.title}</Modal.Title>
+        <Modal.Header className="d-flex justify-content-space-between align-items-center">
+          <Modal.Title>Room {choosenRoom?.number_room}</Modal.Title>
+          <div>
+            {choosenRoom?.status === "available" ? (
+              <div className="d-flex">
+                <FaCheckCircle color="#59de7c" size={24} />
+                <p className="ms-2 mb-0" style={{ color: "#59de7c" }}>
+                  {choosenRoom?.status}
+                </p>
+              </div>
+            ) : (
+              <div className="d-flex">
+                <IoMdCloseCircle color="#c23466" size={24} />
+                <p className="ms-2 mb-0" style={{ color: "#c23466" }}>
+                  {choosenRoom?.status}
+                </p>
+              </div>
+            )}
+          </div>
         </Modal.Header>
         <Modal.Body>
           <Carousel data-bs-theme="dark">
-            {choosenRoom?.photo?.map((item) => {
+            {photoItem().map((item) => {
               return (
                 <Carousel.Item>
                   <div style={{ height: 400 }}>
                     <img
                       className="d-block w-100"
-                      src={item}
+                      src={`${photoUrl}/room_images/${item}`}
                       alt="image"
                       style={{
                         height: "100%",
@@ -93,29 +121,28 @@ const RoomList = ({ rooms }) => {
           </Carousel>
           <div className="mt-3">
             <h4>Description</h4>
-            <p className="text-justify">
-              Bebas Biaya Admin Kamu tidak akan dikenakan biaya admin saat
-              melakukan pembayaran di Mamikos. Asuransi Khusus Penyewa
-              Perlindungan selama ngekos atas kompensasi kehilangan barang dan
-              kerusakan fasilitas pada unit kamar. Disediakan oleh PT Great
-              Eastern Insurance Indonesia. Syarat & Ketentuan berlaku. Pro
-              Service Ditangani secara profesional oleh tim Mamikos. Selama kamu
-              ngekos di sini, ada tim dari Mamikos yang akan merespon saran dan
-              komplainmu. Dikelola Mamikos, Terjamin Nyaman Kos ini
-              operasionalnya dikelola dan distandardisasi oleh Mamikos.
-            </p>
+            <ul>
+              <li> Rp. {choosenRoom?.price} / month</li>
+              <li> {choosenRoom?.description}</li>
+            </ul>
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="light" onClick={closeModal}>
-            <div className="d-flex align-items-center">
-              <FaWhatsapp size={32} color="#128c7e" />
-              <p className="ms-2 mb-0" style={{ color: "#128c7e" }}>
-                Contact us
-              </p>
-            </div>
+            <a
+              href="https://wa.me/6287824807924"
+              className="text-muted text-decoration-none"
+              target="_blank"
+            >
+              <div className="d-flex align-items-center">
+                <FaWhatsapp size={32} color="#128c7e" />
+                <p className="ms-2 mb-0" style={{ color: "#128c7e" }}>
+                  Contact us
+                </p>
+              </div>
+            </a>
           </Button>
-          <Button variant="success">Order Now</Button>
+          {token && <Button variant="success">Order Now</Button>}
         </Modal.Footer>
       </Modal>
     </div>

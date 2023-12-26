@@ -53,7 +53,7 @@ const AuthUser = () => {
         // toast.success("Successfully login.", {
         //   duration: 4000,
         // });
-        navigate("/");
+        navigate("/", { replace: true });
       } else {
         toast.error("Failed login, please check email or password.", {
           duration: 4000,

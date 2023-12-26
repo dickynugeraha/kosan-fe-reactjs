@@ -33,7 +33,7 @@ const RoomDescription = () => {
   };
 
   return (
-    <Container className="d-flex mb-5">
+    <Container className="d-flex" style={{ marginTop: 180, marginBottom: 80 }}>
       <div className="col-lg-7">
         <h4 className="text-start mb-4" style={{ fontWeight: "bold" }}>
           What you get when you subscribe to this hostel.

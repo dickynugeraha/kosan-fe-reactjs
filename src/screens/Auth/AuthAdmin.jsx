@@ -2,7 +2,6 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 
-import NavbarApp from "../../components/common/NavbarApp";
 import { Button, Card } from "react-bootstrap";
 import API from "../../api/source-api";
 import { useNavigate } from "react-router";
@@ -14,14 +13,14 @@ const AuthAdmin = () => {
 
   const submitedForm = async () => {
     setIsLoading(true);
-    const response = await API.loginUser({
+    const response = await API.loginAdmin({
       payload: { email: inputLogin.email, password: inputLogin.password },
     });
     if (response?.success) {
       sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("user_id", response.data.user_id);
+      sessionStorage.setItem("admin_id", response.data.user_id);
 
-      navigate("/");
+      navigate("/admin", { replace: true });
     } else {
       toast.error("Failed login, please check email or password.", {
         duration: 4000,

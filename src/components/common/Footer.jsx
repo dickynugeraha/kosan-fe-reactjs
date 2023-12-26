@@ -27,6 +27,7 @@ const Footer = () => {
             <a
               href="https://wa.me/6287824807924"
               className="text-muted text-decoration-none"
+              target="_blank"
             >
               <p>0878-2480-7924</p>
             </a>

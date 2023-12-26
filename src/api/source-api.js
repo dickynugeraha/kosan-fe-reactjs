@@ -23,6 +23,21 @@ export default {
       return error.response;
     }
   },
+  loginAdmin: async ({ payload }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/login-admin`,
+        method: "post",
+        data: payload,
+        headers: {
+          ...headers,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
   loginUser: async ({ payload }) => {
     try {
       const response = await axios({
