@@ -18,7 +18,7 @@ const AuthAdmin = () => {
     });
     if (response?.success) {
       sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("admin_id", response.data.user_id);
+      sessionStorage.setItem("admin_id", response.data.admin_id);
 
       navigate("/admin", { replace: true });
     } else {

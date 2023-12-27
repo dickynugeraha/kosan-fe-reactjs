@@ -19,7 +19,7 @@ const RoomList = ({ rooms }) => {
     setShowModal(false);
   };
 
-  const choosenRoom = rooms.find((room) => room.number_room === choosenId);
+  const choosenRoom = rooms.find((room) => room.id == choosenId);
 
   const photoItem = () => {
     const photos = [];
@@ -36,7 +36,7 @@ const RoomList = ({ rooms }) => {
           <div
             style={styles.roomItem}
             onClick={() => {
-              setChoosenId(room.number_room);
+              setChoosenId(room.id);
               openModal();
             }}
           >

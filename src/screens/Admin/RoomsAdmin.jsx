@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import SidebarAdmin from "../../components/common/SidebarAdmin";
-import { Card, Table, Button } from "react-bootstrap";
+import { Card, Table, Button, Modal } from "react-bootstrap";
 import AddRoom from "../../components/Room/Admin/AddRoom";
 import API from "../../api/source-api";
 import toast, { Toaster } from "react-hot-toast";
 import GlobalLoading from "../../components/common/GlobalLoading";
+import { useNavigate } from "react-router";
 
 const RoomsAdmin = () => {
+  const navigate = useNavigate();
+
   const token = sessionStorage.getItem("token");
 
-  const [isModalShow, setIsModalShow] = useState(false);
+  const [isModalAddShow, setIsModalAddShow] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const handleCloseModal = () => {
-    setIsModalShow(false);
+
+  const handleCloseAddModal = () => {
+    setIsModalAddShow(false);
   };
 
   const [rooms, setRooms] = useState([]);
@@ -39,13 +43,14 @@ const RoomsAdmin = () => {
     <SidebarAdmin>
       <h1 className="mb-5">Rooms</h1>
       <div className="d-flex justify-content-start mb-3">
-        <Button onClick={() => setIsModalShow(true)}>Add Room</Button>
+        <Button onClick={() => setIsModalAddShow(true)}>Add Room</Button>
       </div>
       <AddRoom
-        isModalShow={isModalShow}
-        handleCloseModal={handleCloseModal}
-        isAddRoom={isReloadData}
+        isModalShow={isModalAddShow}
+        handleCloseModal={handleCloseAddModal}
+        isReloadData={isReloadData}
       />
+
       <Toaster />
       {isLoading ? (
         <GlobalLoading />
@@ -63,8 +68,13 @@ const RoomsAdmin = () => {
               </tr>
             </thead>
             <tbody>
+              {rooms.length === 0 && (
+                <td colSpan={6}>
+                  <p className="text-center mb-0">No data found</p>
+                </td>
+              )}
               {rooms.map((room, index) => (
-                <tr>
+                <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{room.number_room}</td>
                   <td>{room.price}</td>
@@ -74,7 +84,11 @@ const RoomsAdmin = () => {
                     <p
                       className="text-center text-decoration-underline"
                       style={{ color: "#0000EE" }}
-                      onClick={() => {}}
+                      onClick={() => {
+                        navigate(`/room/${room.id}`, {
+                          state: { rooms: rooms },
+                        });
+                      }}
                     >
                       Detail
                     </p>
@@ -83,6 +97,9 @@ const RoomsAdmin = () => {
               ))}
             </tbody>
           </Table>
+          <Modal>
+            <Modal.Header>Detail Rooms</Modal.Header>
+          </Modal>
         </Card>
       )}
     </SidebarAdmin>

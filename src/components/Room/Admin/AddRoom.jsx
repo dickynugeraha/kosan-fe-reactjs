@@ -5,7 +5,7 @@ import { FiMinusCircle } from "react-icons/fi";
 import API from "../../../api/source-api";
 import GlobalLoading from "../../common/GlobalLoading";
 
-const AddRoom = ({ isModalShow, handleCloseModal, isAddRoom }) => {
+const AddRoom = ({ isModalShow, handleCloseModal, isReloadData }) => {
   const token = sessionStorage.getItem("token");
 
   const [componentPhotos, setComponentPhotos] = useState([]);
@@ -37,6 +37,7 @@ const AddRoom = ({ isModalShow, handleCloseModal, isAddRoom }) => {
     setIsLoading(true);
     const response = await API.addRoom({ token: token, payload: dataForm });
     setIsLoading(false);
+    console.log(response);
     if (response.success) {
       toast.success("Successfully added room");
     } else {
@@ -51,7 +52,7 @@ const AddRoom = ({ isModalShow, handleCloseModal, isAddRoom }) => {
     });
     setImages([]);
     handleCloseModal();
-    isAddRoom();
+    isReloadData();
   };
 
   return (
@@ -159,7 +160,7 @@ const AddRoom = ({ isModalShow, handleCloseModal, isAddRoom }) => {
           style={{ color: "#0000EE" }}
           onClick={() => {
             setComponentPhotos((prevState) => {
-              return [Math.floor(Math.random() * 10), ...prevState];
+              return [Math.random().toString(36).substring(2, 7), ...prevState];
             });
           }}
         >

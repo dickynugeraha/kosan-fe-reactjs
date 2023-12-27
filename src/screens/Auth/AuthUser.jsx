@@ -55,7 +55,7 @@ const AuthUser = () => {
         // });
         navigate("/", { replace: true });
       } else {
-        toast.error("Failed login, please check email or password.", {
+        toast.error(`Failed to login, ${response.data.data.error}`, {
           duration: 4000,
         });
       }

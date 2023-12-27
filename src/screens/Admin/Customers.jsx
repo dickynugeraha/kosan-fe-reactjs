@@ -14,7 +14,6 @@ const Customers = () => {
     const getAllUserHandler = async () => {
       setIsLoading(true);
       const response = await API.getAllUser({ token });
-      console.log(response);
       if (response.success) {
         setUsers(response.data);
       } else {
@@ -46,8 +45,13 @@ const Customers = () => {
                 </tr>
               </thead>
               <tbody>
+                {users.length === 0 && (
+                  <td colSpan={6}>
+                    <p className="text-center mb-0">No data found</p>
+                  </td>
+                )}
                 {users.map((user, index) => (
-                  <tr>
+                  <tr key={index}>
                     <td>{index + 1}</td>
                     <td>{user.name}</td>
                     <td>{user.email}</td>

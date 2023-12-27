@@ -15,6 +15,7 @@ import Customers from "../screens/Admin/Customers";
 import Transactions from "../screens/Admin/Transactions";
 import RoomsAdmin from "../screens/Admin/RoomsAdmin";
 import NotFound from "../screens/NotFound/NotFound";
+import DetailRoomAdmin from "../screens/Admin/DetailRoomAdmin";
 
 const RootNavigation = () => {
   const token = sessionStorage.getItem("token");
@@ -35,6 +36,7 @@ const RootNavigation = () => {
       <Routes>
         <Route path="/" exact Component={Home} />
         <Route path="/rooms" Component={Rooms} />
+        <Route path="/room/:id" Component={DetailRoomAdmin} />
         <Route path="/auth" Component={AuthUser} />
         <Route path="/login-admin" Component={AuthAdmin} />
         <Route path="/profile" Component={Profile} />

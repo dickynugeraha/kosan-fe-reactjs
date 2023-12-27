@@ -76,7 +76,6 @@ export default {
         method: "get",
         headers: {
           ...headers,
-
           Authorization: `Bearer ${token}`,
         },
       });
@@ -110,6 +109,21 @@ export default {
           Accept: "application/json",
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  deleteRoom: async ({ token, id }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/rooms/${id}`,
+        method: "delete",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
         },
       });
       return response.data;
