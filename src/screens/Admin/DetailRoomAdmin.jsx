@@ -38,7 +38,7 @@ const DetailRoomAdmin = () => {
       toast.success("Success deleted room");
       setTimeout(() => {
         navigate("/rooms-admin", { replace: true });
-      }, 2000);
+      }, 1000);
     } else {
       toast.error("Failed deleted room");
     }

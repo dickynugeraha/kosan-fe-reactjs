@@ -1,20 +1,17 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 
 import NavbarApp from "../../components/common/NavbarApp";
 import { Button, Card } from "react-bootstrap";
 import API from "../../api/source-api";
-import { AuthContext } from "../../store/context/auth-context";
 import { useNavigate } from "react-router";
 
 const AuthUser = () => {
   const navigate = useNavigate();
-  const authContext = useContext(AuthContext);
 
   const [isLoginSection, setIsLoginSection] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  // const [isRedirect, setisRedirect] = useState(false);
 
   const [inputLogin, setInputLogin] = useState({ email: "", password: "" });
   const [inputRegister, setInputRegister] = useState({
@@ -26,16 +23,6 @@ const AuthUser = () => {
     password: "",
   });
 
-  // useEffect(() => {
-  //   if (authContext.isLogin()) {
-  //     const isLogin = authContext.isLogin();
-
-  //     if (isLogin) {
-  //       setisRedirect(true);
-  //     }
-  //   }
-  // }, [authContext]);
-
   const submitedForm = async () => {
     if (isLoginSection) {
       setIsLoading(true);
@@ -46,17 +33,13 @@ const AuthUser = () => {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("user_id", response.data.user_id);
 
-        authContext.login({
-          token: response.data.token,
-          user_id: response.data.user_id,
-        });
-        // toast.success("Successfully login.", {
-        //   duration: 4000,
-        // });
-        navigate("/", { replace: true });
+        toast.success("Login successfully.");
+        setTimeout(() => {
+          navigate("/", { replace: true });
+        }, 1000);
       } else {
         toast.error(`Failed to login, ${response.data.data.error}`, {
-          duration: 4000,
+          duration: 3000,
         });
       }
       setInputLogin({ email: "", password: "" });
@@ -75,11 +58,11 @@ const AuthUser = () => {
       });
       if (response.success) {
         toast.success("Successfully register.", {
-          duration: 4000,
+          duration: 3000,
         });
       } else {
-        toast.error("Failed register, email is available.", {
-          duration: 4000,
+        toast.error(`Failed register, ${response.data.data.error}.`, {
+          duration: 3000,
         });
       }
       setIsLoginSection(true);

@@ -128,6 +128,57 @@ const RoomList = ({ rooms }) => {
           </div>
         </Modal.Body>
         <Modal.Footer>
+          {token && (
+            <>
+              <div className="input-group mb-3">
+                <span className="input-group-text" style={{ width: 120 }}>
+                  Start booking
+                </span>
+                <input
+                  name="start_booking"
+                  className="form-control"
+                  type="date"
+                />
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text" style={{ width: 120 }}>
+                  End booking
+                </span>
+                <input
+                  name="end_booking"
+                  className="form-control"
+                  type="date"
+                />
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text" style={{ width: 120 }}>
+                  <div className="text-start">
+                    <p className="mb-0">Period order</p>
+                    <p className="mb-0" style={{ fontSize: "12px" }}>
+                      (Month)
+                    </p>
+                  </div>
+                </span>
+                <input
+                  name="period_order"
+                  className="form-control"
+                  type="number"
+                />
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text" style={{ width: 120 }}>
+                  Total price
+                </span>
+                <input
+                  name="total_price"
+                  className="form-control"
+                  type="number"
+                  readOnly
+                />
+              </div>
+            </>
+          )}
+
           <Button variant="light" onClick={closeModal}>
             <a
               href="https://wa.me/6287824807924"
