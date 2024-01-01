@@ -37,7 +37,6 @@ const AddRoom = ({ isModalShow, handleCloseModal, isReloadData }) => {
     setIsLoading(true);
     const response = await API.addRoom({ token: token, payload: dataForm });
     setIsLoading(false);
-    console.log(response);
     if (response.success) {
       toast.success("Successfully added room");
     } else {
@@ -169,7 +168,9 @@ const AddRoom = ({ isModalShow, handleCloseModal, isReloadData }) => {
       </Modal.Body>
       <Modal.Footer>
         {isLoading ? (
-          <GlobalLoading />
+          <div>
+            <GlobalLoading />
+          </div>
         ) : (
           <Button
             variant="primary"

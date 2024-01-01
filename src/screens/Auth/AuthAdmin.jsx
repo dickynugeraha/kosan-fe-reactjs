@@ -1,8 +1,9 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
-
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { Button, Card } from "react-bootstrap";
+
 import API from "../../api/source-api";
 import { useNavigate } from "react-router";
 
@@ -84,14 +85,11 @@ const AuthAdmin = () => {
               </div>
             </>
             <div className="d-flex justify-content-between align-items-center">
-              <p
-                className="text-decoration-underline ms-1 mb-0"
-                onClick={() => {
-                  navigate("/");
-                }}
-              >
-                Back
-              </p>
+              <FaArrowLeftLong
+                size={20}
+                className="ms-1"
+                onClick={() => navigate(-1)}
+              />
               {isLoading ? (
                 <div
                   style={{ width: 100 }}

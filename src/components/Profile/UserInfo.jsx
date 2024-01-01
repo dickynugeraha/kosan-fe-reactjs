@@ -29,7 +29,6 @@ const UserInfo = () => {
         user_id: user_id,
         token: token,
       });
-      console.log(response);
       if (response.success) {
         setProfile({
           name: response.data.name,

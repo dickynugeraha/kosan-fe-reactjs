@@ -7,14 +7,13 @@ import { useNavigate } from "react-router";
 import UserInfo from "../../components/Profile/UserInfo";
 import HistoryBooking from "../../components/Profile/HistoryBooking";
 import CurrentBooking from "../../components/Profile/CurrentBooking";
+import NeedPayment from "../../components/Profile/NeedPayment";
 
 const Profile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-
-    console.log(token);
 
     if (!token) {
       navigate("/");
@@ -26,10 +25,12 @@ const Profile = () => {
 
   const attributeHistory = screenSection === 0 ? "active" : "";
   const attributeCurrent = screenSection === 1 ? "active" : "";
+  const attributeTransac = screenSection === 2 ? "active" : "";
 
   const screen = {
     0: <HistoryBooking />,
     1: <CurrentBooking />,
+    2: <NeedPayment />,
   };
 
   return (
@@ -47,7 +48,7 @@ const Profile = () => {
                   <Nav.Item>
                     <Nav.Link
                       eventKey={"link-0"}
-                      {...attributeHistory}
+                      {...(screenSection === 0 ? "active" : "")}
                       onClick={() => setScreenSection(0)}
                     >
                       History transaction
@@ -56,10 +57,19 @@ const Profile = () => {
                   <Nav.Item>
                     <Nav.Link
                       eventKey="link-1"
-                      {...attributeCurrent}
+                      {...(screenSection === 1 ? "active" : "")}
                       onClick={() => setScreenSection(1)}
                     >
                       Current booking
+                    </Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link
+                      eventKey="link-2"
+                      {...(screenSection === 2 ? "active" : "")}
+                      onClick={() => setScreenSection(2)}
+                    >
+                      Need Payment
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>

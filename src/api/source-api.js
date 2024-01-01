@@ -131,5 +131,36 @@ export default {
       return err.response;
     }
   },
-  //  ===========================================
+  //  ================================================= ORDERS ==================================================
+  createOrder: async ({ token, payload }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders`,
+        method: "post",
+        data: payload,
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  orderNeedPaymentUser: async ({ token, userId }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/need-payment/${userId}`,
+        method: "get",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
 };

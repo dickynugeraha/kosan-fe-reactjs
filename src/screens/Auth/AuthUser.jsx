@@ -1,9 +1,9 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
+import { Button, Card } from "react-bootstrap";
 
 import NavbarApp from "../../components/common/NavbarApp";
-import { Button, Card } from "react-bootstrap";
 import API from "../../api/source-api";
 import { useNavigate } from "react-router";
 
@@ -33,10 +33,10 @@ const AuthUser = () => {
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("user_id", response.data.user_id);
 
-        toast.success("Login successfully.");
+        toast.success("Login successfully.", { duration: 1000 });
         setTimeout(() => {
           navigate("/", { replace: true });
-        }, 1000);
+        }, 1500);
       } else {
         toast.error(`Failed to login, ${response.data.data.error}`, {
           duration: 3000,
