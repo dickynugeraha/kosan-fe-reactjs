@@ -1,43 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
+import API from "../../api/source-api";
+import { resolvePath } from "react-router";
+import GlobalLoading from "../common/GlobalLoading";
+import { formatDate, formatRupiah } from "../../helpers/stringFormat";
 
 const HistoryBooking = () => {
+  const token = sessionStorage.getItem("token");
+  const userId = sessionStorage.getItem("user_id");
+
+  const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    const getOrdersByUserId = async () => {
+      setIsLoading(true);
+      const response = await API.ordersByUser({ token: token, userId: userId });
+      console.log(response);
+      if (response.success) {
+        setOrders(response.data);
+      } else {
+        return;
+      }
+      console.log(orders);
+      setIsLoading(false);
+    };
+
+    getOrdersByUserId();
+  }, []);
+
   return (
     <div>
-      <Table striped>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Start Booking</th>
-            <th>End Booking</th>
-            <th>Room</th>
-            <th>Payment Method</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>12 Agustus 2023</td>
-            <td>12 Desember 2023</td>
-            <td>101</td>
-            <td>OVO</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>12 Agustus 2022</td>
-            <td>12 Desember 2022</td>
-            <td>102</td>
-            <td>Gopay</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>12 Agustus 2022</td>
-            <td>12 Desember 2022</td>
-            <td>103</td>
-            <td>Gopay</td>
-          </tr>
-        </tbody>
-      </Table>
+      {isLoading ? (
+        <GlobalLoading />
+      ) : (
+        <Table striped>
+          {orders.length === 0 ? (
+            <p>No data found!</p>
+          ) : (
+            <>
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Start Booking</th>
+                  <th>End Booking</th>
+                  <th>Room</th>
+                  <th>Total Price</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {orders.map((order, index) => (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{order.start_order}</td>
+                    <td>{order.end_order}</td>
+                    <td>{order.room.number_room}</td>
+                    <td>{formatRupiah(order.total_price)}</td>
+                    <td>Detail</td>
+                  </tr>
+                ))}
+              </tbody>
+            </>
+          )}
+        </Table>
+      )}
     </div>
   );
 };

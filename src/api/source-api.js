@@ -163,4 +163,36 @@ export default {
       return err.response;
     }
   },
+  updatePayment: async ({ token, payload }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/update-payment`,
+        method: "post",
+        data: payload,
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  ordersByUser: async ({ token, userId }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/user/${userId}`,
+        method: "get",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
 };

@@ -18,6 +18,7 @@ const Customers = () => {
         setUsers(response.data);
       } else {
         toast.error("Failed fetch customers", { duration: 4000 });
+        toast.remove();
       }
       setIsLoading(false);
     };

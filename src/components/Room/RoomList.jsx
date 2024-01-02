@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import API from "../../api/source-api";
 import { useNavigate } from "react-router";
 import GlobalLoading from "../common/GlobalLoading";
+import { formatRupiah } from "../../helpers/stringFormat";
 
 const RoomList = ({ rooms }) => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const RoomList = ({ rooms }) => {
   const [choosenId, setChoosenId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
   const choosenRoom = rooms.find((room) => room.id == choosenId);
   const [inputOrder, setInputOrder] = useState({
     user_id: userId,
@@ -65,12 +67,14 @@ const RoomList = ({ rooms }) => {
         duration: 2000,
       });
       setTimeout(() => {
+        toast.remove();
         navigate("/profile");
       }, 4500);
     } else {
       toast.error("Failed added orders", {
         duration: 4000,
       });
+      toast.remove();
     }
   };
 
@@ -94,19 +98,23 @@ const RoomList = ({ rooms }) => {
               </div>
               <div className="col-md-6 text-start ms-3">
                 <p className="mb-1"> Number {room.number_room}</p>
-                <p className="mb-3">Rp. {room.price}</p>
+                <p className="mb-3">{formatRupiah(room.price)}</p>
                 {room.status === "available" ? (
                   <div className="d-flex">
                     <FaCheckCircle color="#59de7c" size={24} />
                     <p className="ms-2" style={{ color: "#59de7c" }}>
-                      {room.status}
+                      {room.status === "available"
+                        ? "Available"
+                        : "Not available"}
                     </p>
                   </div>
                 ) : (
                   <div className="d-flex">
                     <IoMdCloseCircle color="#c23466" size={24} />
                     <p className="ms-2" style={{ color: "#c23466" }}>
-                      {room.status}
+                      {room.status === "available"
+                        ? "Available"
+                        : "Not available"}
                     </p>
                   </div>
                 )}
@@ -139,7 +147,9 @@ const RoomList = ({ rooms }) => {
                 <div className="d-flex">
                   <IoMdCloseCircle color="#c23466" size={24} />
                   <p className="ms-2 mb-0" style={{ color: "#c23466" }}>
-                    {choosenRoom?.status}
+                    {choosenRoom?.status === "available"
+                      ? "Available"
+                      : "Not available"}
                   </p>
                 </div>
               )}
@@ -171,7 +181,7 @@ const RoomList = ({ rooms }) => {
             <div className="mt-3">
               <h4>Description</h4>
               <ul>
-                <li> Rp. {choosenRoom?.price} / month</li>
+                <li> {formatRupiah(choosenRoom?.price)} / month</li>
                 <li> {choosenRoom?.description}</li>
               </ul>
             </div>
@@ -186,6 +196,7 @@ const RoomList = ({ rooms }) => {
                   Start booking
                 </span>
                 <input
+                  required
                   value={inputOrder.start_order}
                   name="start_order"
                   className="form-control"
@@ -207,6 +218,7 @@ const RoomList = ({ rooms }) => {
                   End booking
                 </span>
                 <input
+                  required
                   value={inputOrder.end_order}
                   name="end_order"
                   className="form-control"
@@ -233,6 +245,7 @@ const RoomList = ({ rooms }) => {
                   </div>
                 </span>
                 <input
+                  required
                   value={inputOrder.period_order}
                   name="period_order"
                   className="form-control"
@@ -254,11 +267,14 @@ const RoomList = ({ rooms }) => {
                   Total price
                 </span>
                 <input
+                  required
                   name="total_price"
                   className="form-control"
-                  type="number"
+                  type="text"
                   readOnly
-                  value={choosenRoom?.price * inputOrder.period_order}
+                  value={formatRupiah(
+                    choosenRoom?.price * inputOrder.period_order
+                  )}
                 />
               </div>
             </Container>

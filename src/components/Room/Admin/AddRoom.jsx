@@ -22,6 +22,7 @@ const AddRoom = ({ isModalShow, handleCloseModal, isReloadData }) => {
   const addRoomHandler = async () => {
     if (images.length === 0) {
       toast.error("Must be upload image room");
+      toast.remove();
       return;
     }
 
@@ -39,8 +40,10 @@ const AddRoom = ({ isModalShow, handleCloseModal, isReloadData }) => {
     setIsLoading(false);
     if (response.success) {
       toast.success("Successfully added room");
+      toast.remove();
     } else {
       toast.error("Failed added room");
+      toast.remove();
     }
 
     setInputRoom({

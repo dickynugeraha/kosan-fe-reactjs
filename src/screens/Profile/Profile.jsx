@@ -6,8 +6,7 @@ import { useNavigate } from "react-router";
 
 import UserInfo from "../../components/Profile/UserInfo";
 import HistoryBooking from "../../components/Profile/HistoryBooking";
-import CurrentBooking from "../../components/Profile/CurrentBooking";
-import NeedPayment from "../../components/Profile/NeedPayment";
+import RecentBooking from "../../components/Profile/RecentBooking";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -23,14 +22,13 @@ const Profile = () => {
 
   const [screenSection, setScreenSection] = useState(0);
 
-  const attributeHistory = screenSection === 0 ? "active" : "";
-  const attributeCurrent = screenSection === 1 ? "active" : "";
-  const attributeTransac = screenSection === 2 ? "active" : "";
+  const isUpdate = () => {
+    setScreenSection(0);
+  };
 
   const screen = {
     0: <HistoryBooking />,
-    1: <CurrentBooking />,
-    2: <NeedPayment />,
+    1: <RecentBooking isUpdate={isUpdate} />,
   };
 
   return (
@@ -60,16 +58,7 @@ const Profile = () => {
                       {...(screenSection === 1 ? "active" : "")}
                       onClick={() => setScreenSection(1)}
                     >
-                      Current booking
-                    </Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link
-                      eventKey="link-2"
-                      {...(screenSection === 2 ? "active" : "")}
-                      onClick={() => setScreenSection(2)}
-                    >
-                      Need Payment
+                      Recent booking
                     </Nav.Link>
                   </Nav.Item>
                 </Nav>
