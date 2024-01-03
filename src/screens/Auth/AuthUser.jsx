@@ -36,7 +36,6 @@ const AuthUser = () => {
         toast.success("Login successfully.", { duration: 1000 });
         setTimeout(() => {
           toast.remove();
-
           navigate("/", { replace: true });
         }, 1500);
       } else {

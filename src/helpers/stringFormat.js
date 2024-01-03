@@ -8,8 +8,8 @@ export const formatRupiah = (number) => {
 export const formatDate = (date) => {
   const newDate = new Date(date);
   const day = newDate.getDay();
-  const month = newDate.getMonth();
-  const year = newDate.getYear();
+  const month = newDate.getMonth() + 1;
+  const year = newDate.getFullYear();
 
   return `${day}-${month}-${year}`;
 };
