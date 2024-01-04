@@ -10,10 +10,10 @@ const SectionFacility = () => {
       <p>
         Our boarding house has several advantages over other boarding houses.
       </p>
-      <div className="d-flex justify-content-around my-5">
+      <div className="d-flex justify-content-around my-5 row">
         <Card
           style={{ width: "18rem", borderColor: "#ed5898" }}
-          className="p-3 cardCustom"
+          className="p-3 cardCustom col-md-4 mt-sm-3 mt-md-3"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">
@@ -30,7 +30,7 @@ const SectionFacility = () => {
         </Card>
         <Card
           style={{ width: "18rem", borderColor: "#84c48e" }}
-          className="p-3 cardCustom"
+          className="p-3 cardCustom col-md-4 mt-sm-3 mt-md-3"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">
@@ -47,7 +47,7 @@ const SectionFacility = () => {
         </Card>
         <Card
           style={{ width: "18rem", borderColor: "#84a9c4" }}
-          className="p-3 cardCustom"
+          className="p-3 cardCustom col-md-4 mt-sm-3 mt-md-3"
         >
           <Card.Body>
             <Card.Subtitle className="mb-3 text-start">

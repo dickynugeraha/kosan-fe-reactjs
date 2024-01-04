@@ -36,10 +36,10 @@ const Profile = () => {
       <NavbarApp />
       <Container className="my-5 text-start" style={{ minHeight: "90vh" }}>
         <Row>
-          <Col xs={12} md={4}>
+          <Col md={12} lg={4}>
             <UserInfo />
           </Col>
-          <Col xs={12} md={8}>
+          <Col md={12} lg={8}>
             <Card>
               <Card.Header>
                 <Nav variant="tabs" defaultActiveKey="/home">
