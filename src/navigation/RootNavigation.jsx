@@ -16,6 +16,7 @@ import Transactions from "../screens/Admin/Transactions";
 import RoomsAdmin from "../screens/Admin/RoomsAdmin";
 import NotFound from "../screens/NotFound/NotFound";
 import DetailRoomAdmin from "../screens/Admin/DetailRoomAdmin";
+import DetailTransaction from "../screens/Admin/DetailTransaction";
 
 const RootNavigation = () => {
   const token = sessionStorage.getItem("token");
@@ -43,6 +44,7 @@ const RootNavigation = () => {
         <Route path="/admin" element={<Navigate to="/customers" />} />
         <Route path="/customers" Component={Customers} />
         <Route path="/transactions" Component={Transactions} />
+        <Route path="/transactions/:id" Component={DetailTransaction} />
         <Route path="/rooms-admin" Component={RoomsAdmin} />
       </Routes>
     );

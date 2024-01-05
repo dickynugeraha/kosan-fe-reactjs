@@ -47,7 +47,9 @@ const RoomList = ({ rooms }) => {
   const orderRoomHandler = async () => {
     if (choosenRoom?.status !== "available") {
       toast.error("Room not available or already booked!");
-      toast.remove();
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
       return;
     }
     setIsLoading(true);

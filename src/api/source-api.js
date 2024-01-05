@@ -134,8 +134,8 @@ export default {
   updateRoom: async ({ id, token, payload }) => {
     try {
       const response = await axios({
-        url: `${mainUrl}/rooms/${id}`,
-        method: "put",
+        url: `${mainUrl}/rooms/update/${id}`,
+        method: "post",
         data: payload,
         headers: {
           Accept: "application/json",
@@ -201,6 +201,21 @@ export default {
     try {
       const response = await axios({
         url: `${mainUrl}/orders/user/${userId}`,
+        method: "get",
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  ordersByStatus: async ({ token, status }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/status/${status}`,
         method: "get",
         headers: {
           ...headers,

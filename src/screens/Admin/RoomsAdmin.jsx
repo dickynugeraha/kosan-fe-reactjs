@@ -82,8 +82,7 @@ const RoomsAdmin = () => {
                   <td>{room.description}</td>
                   <td>
                     <p
-                      className="text-center text-decoration-underline"
-                      style={{ color: "#0000EE" }}
+                      style={{ color: "#0070E0" }}
                       onClick={() => {
                         navigate(`/room/${room.id}`, {
                           state: { rooms: rooms },

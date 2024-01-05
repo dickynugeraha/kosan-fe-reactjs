@@ -50,12 +50,12 @@ const DetailRoomAdmin = () => {
 
   const updateRoomHandler = async () => {
     const dataForm = new FormData();
-    dataForm.append("isUpdatePhotos", isUpdatePhotos);
     dataForm.append("number_room", inputUpdateRoom.number_room);
     dataForm.append("price", inputUpdateRoom.price);
     dataForm.append("status", inputUpdateRoom.status);
     dataForm.append("description", inputUpdateRoom.description);
-    if (isUpdatePhotos) {
+    dataForm.append("is_update_photos", isUpdatePhotos);
+    if (isUpdatePhotos === true) {
       images.forEach((image_file) => {
         dataForm.append("file[]", image_file);
       });
