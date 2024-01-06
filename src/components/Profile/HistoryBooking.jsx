@@ -33,6 +33,11 @@ const HistoryBooking = () => {
     getOrdersByUserId();
   }, []);
 
+  const statusPayment = {
+    waiting_approval: "Pending approval",
+    need_payment: "Need payment",
+  };
+
   return (
     <div>
       {isLoading ? (
@@ -122,6 +127,10 @@ const HistoryBooking = () => {
                                   {choosenBook?.payment_method === "bank"
                                     ? "Bank"
                                     : "OVO, DATA or GOPAY"}
+                                </p>
+                                <p className="m-0 fw-bold mt-2">Status order</p>
+                                <p className="m-0">
+                                  {statusPayment[choosenBook?.status]}
                                 </p>
                               </Card>
                             </Col>
