@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel, Container, Col, Row } from "react-bootstrap";
 
 import imageRoom2 from "../../assets/images/rooms/room2.jpg";
 import imageRoom3 from "../../assets/images/rooms/room3.jpg";
@@ -13,8 +13,11 @@ const SectionOurRoom = () => {
   return (
     <div style={styles.boxImage}>
       <Container className="mt-4">
-        <div className="d-flex align-items-center" style={{ height: "80vh" }}>
-          <div className="col-sm-3">
+        <div
+          className="d-flex align-items-center row"
+          style={{ height: "80vh" }}
+        >
+          <div className="col-md-3">
             <h1 style={{ textAlign: "left" }}>Our Room</h1>
             <p style={{ marginTop: 80, textAlign: "left" }}>
               Enjoy all the comforts of our facilities, by looking at some of
@@ -23,7 +26,7 @@ const SectionOurRoom = () => {
             </p>
           </div>
           <div className="col-sm-1"></div>
-          <div className="col-sm-8">
+          <div className="col-md-8">
             <Carousel data-bs-theme="dark">
               <Carousel.Item>
                 <div style={{ height: 400 }}>

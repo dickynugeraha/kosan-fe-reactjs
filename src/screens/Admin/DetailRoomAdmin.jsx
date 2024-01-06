@@ -27,7 +27,7 @@ const DetailRoomAdmin = () => {
   const [inputUpdateRoom, setInputUpdateRoom] = useState({
     number_room: room.number_room,
     price: room.price,
-    status: "available",
+    status: room.status,
     description: room.description,
   });
 
@@ -43,6 +43,36 @@ const DetailRoomAdmin = () => {
       }, 1000);
     } else {
       toast.error("Failed deleted room");
+      toast.remove();
+    }
+    setIsLoading(false);
+  };
+
+  const updateRoomHandler = async () => {
+    const dataForm = new FormData();
+    dataForm.append("number_room", inputUpdateRoom.number_room);
+    dataForm.append("price", inputUpdateRoom.price);
+    dataForm.append("status", inputUpdateRoom.status);
+    dataForm.append("description", inputUpdateRoom.description);
+    dataForm.append("is_update_photos", isUpdatePhotos);
+    if (isUpdatePhotos === true) {
+      images.forEach((image_file) => {
+        dataForm.append("file[]", image_file);
+      });
+    }
+
+    setIsLoading(true);
+    const response = await API.updateRoom({
+      id: id,
+      token: token,
+      payload: dataForm,
+    });
+    console.log(response);
+    if (response.success) {
+      toast.success("Successfully updated room", { duration: 2000 });
+      toast.remove();
+    } else {
+      toast.error("Failed updated room", { duration: 2000 });
       toast.remove();
     }
     setIsLoading(false);
@@ -211,7 +241,11 @@ const DetailRoomAdmin = () => {
               <Button variant="danger" onClick={deleteRoomHandler}>
                 Delete
               </Button>
-              <Button variant="warning" className="ms-2">
+              <Button
+                variant="warning"
+                className="ms-2"
+                onClick={updateRoomHandler}
+              >
                 Update
               </Button>
             </div>
