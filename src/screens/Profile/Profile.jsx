@@ -36,7 +36,7 @@ const Profile = () => {
       <NavbarApp />
       <Container className="my-5 text-start" style={{ minHeight: "90vh" }}>
         <Row>
-          <Col md={12} lg={4}>
+          <Col md={12} lg={4} className="mb-3">
             <UserInfo />
           </Col>
           <Col md={12} lg={8}>

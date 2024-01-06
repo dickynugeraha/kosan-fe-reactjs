@@ -67,7 +67,6 @@ const DetailRoomAdmin = () => {
       token: token,
       payload: dataForm,
     });
-    console.log(response);
     if (response.success) {
       toast.success("Successfully updated room", { duration: 2000 });
       toast.remove();

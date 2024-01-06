@@ -27,8 +27,6 @@ const TransactionStatus = ({ status }) => {
     getOrdersByStatusHandler();
   }, [status]);
 
-  console.log(orders);
-
   return (
     <Table striped>
       <thead>

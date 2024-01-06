@@ -20,13 +20,11 @@ const HistoryBooking = () => {
     const getOrdersByUserId = async () => {
       setIsLoading(true);
       const response = await API.ordersByUser({ token: token, userId: userId });
-      console.log(response);
       if (response.success) {
         setOrders(response.data);
       } else {
         return;
       }
-      console.log(orders);
       setIsLoading(false);
     };
 
@@ -36,6 +34,8 @@ const HistoryBooking = () => {
   const statusPayment = {
     waiting_approval: "Pending approval",
     need_payment: "Need payment",
+    success: "Success",
+    failed: "Failed",
   };
 
   return (

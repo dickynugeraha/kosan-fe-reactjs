@@ -197,6 +197,22 @@ export default {
       return err.response;
     }
   },
+  changeStatusOrder: async ({ token, payload }) => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/change-status`,
+        method: "post",
+        data: payload,
+        headers: {
+          ...headers,
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
   ordersByUser: async ({ token, userId }) => {
     try {
       const response = await axios({
@@ -220,6 +236,20 @@ export default {
         headers: {
           ...headers,
           Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (err) {
+      return err.response;
+    }
+  },
+  checkOrderExpired: async () => {
+    try {
+      const response = await axios({
+        url: `${mainUrl}/orders/check-expired`,
+        method: "get",
+        headers: {
+          ...headers,
         },
       });
       return response.data;

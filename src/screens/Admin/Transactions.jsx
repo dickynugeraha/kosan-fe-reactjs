@@ -8,7 +8,7 @@ const Bookings = () => {
 
   return (
     <SidebarAdmin>
-      <h1 className="mb-5">Transactions</h1>
+      <h1 className="mb-5">Transactions </h1>
       <Card>
         <Card.Header>
           <Nav variant="tabs" defaultActiveKey="/home">

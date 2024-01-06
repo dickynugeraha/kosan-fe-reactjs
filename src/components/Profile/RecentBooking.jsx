@@ -54,6 +54,7 @@ const RecentBooking = ({ isUpdate }) => {
         photo_transfer: image,
       },
     });
+    console.log(response);
     if (response.success) {
       toast.success("Successfully, payment!", { duration: 1000 });
       setTimeout(() => {

@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import SectionHeader from "../../components/Home/SectionHeader";
 import SectionOurRoom from "../../components/Home/SectionOurRoom";
 import Footer from "../../components/common/Footer";
 import SectionFacility from "../../components/Home/SectionFacility";
 import NavbarApp from "../../components/common/NavbarApp";
+import sourceApi from "../../api/source-api";
 
 const Home = () => {
+  useEffect(() => {
+    const checkOrdersExpired = async () => {
+      await sourceApi.checkOrderExpired();
+    };
+    checkOrdersExpired();
+  }, []);
+
   return (
     <>
       <NavbarApp />

@@ -5,17 +5,15 @@ import { Link } from "react-router-dom";
 
 const SectionHeader = () => {
   return (
-    <div style={styles.boxImage}>
+    <div style={styles.boxImage} className="d-flex">
       <div style={styles.boxDescHeader}>
         <h1 style={{ display: "inline" }}>Let's find your</h1>{" "}
         <p style={{ fontSize: 32, display: "inline", fontStyle: "italic" }}>
-          {" "}
           Room,
         </p>{" "}
         <br />
         <h1 style={{ display: "inline" }}>For your perfect</h1>{" "}
         <p style={{ fontSize: 32, display: "inline", fontStyle: "italic" }}>
-          {" "}
           Home.
         </p>
         <p style={{ marginTop: 24, marginBottom: 0 }}>
@@ -37,11 +35,11 @@ const styles = {
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
+    padding: "30px",
   },
   boxDescHeader: {
-    position: "absolute",
-    top: 200,
-    left: 120,
+    marginTop: "100px",
+    height: "350px",
     padding: 32,
     backgroundColor: "rgba(235, 235, 235, 0.7)",
     borderRadius: 25,

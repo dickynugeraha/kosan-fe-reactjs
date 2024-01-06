@@ -17,7 +17,7 @@ const SectionOurRoom = () => {
           className="d-flex align-items-center row"
           style={{ height: "80vh" }}
         >
-          <div className="col-md-3">
+          <div className="col-md-3 mb-3">
             <h1 style={{ textAlign: "left" }}>Our Room</h1>
             <p style={{ marginTop: 80, textAlign: "left" }}>
               Enjoy all the comforts of our facilities, by looking at some of
