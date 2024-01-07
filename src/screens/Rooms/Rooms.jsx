@@ -24,6 +24,13 @@ const Rooms = () => {
   };
 
   React.useEffect(() => {
+    const checkOrdersExpired = async () => {
+      await API.checkOrderExpired();
+    };
+    checkOrdersExpired();
+  }, []);
+
+  React.useEffect(() => {
     getAllRooms();
   }, []);
 

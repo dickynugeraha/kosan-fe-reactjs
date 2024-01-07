@@ -33,7 +33,7 @@ const AuthAdmin = () => {
 
   return (
     <>
-      <div className="mt-5">
+      <div className="mt-4 p-4">
         <Toaster />
         <h1 className="mb-4">Login Admin</h1>
         <div className="d-flex justify-content-center">
