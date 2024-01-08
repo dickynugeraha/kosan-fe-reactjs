@@ -20,9 +20,9 @@ const Home = () => {
       <NavbarApp />
       <SectionHeader />
       <div style={{ height: 100 }}></div>
-      <SectionOurRoom />
-      <div style={{ height: 40 }}></div>
       <SectionFacility />
+      <div style={{ height: 40 }}></div>
+      <SectionOurRoom />
       <div style={{ height: 100 }}></div>
       <Footer />
     </>

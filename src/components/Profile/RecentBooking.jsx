@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import paymentNumber from "../../assets/images/payment_number.jpg";
 import paymentBca from "../../assets/images/payment_bca.jpeg";
+import paymentMandiri from "../../assets/images/payment_mandiri.png";
 
 import API from "../../api/source-api";
 import toast, { Toaster } from "react-hot-toast";
@@ -108,16 +109,28 @@ const RecentBooking = ({ isUpdate }) => {
                   <ol>
                     <li>Ovo, Dana & Gopay : 08963214785</li>
                     <li>Bank BCA : 05618912089156135156</li>
+                    <li>Bank Mandiri : 0287478874945949</li>
                   </ol>
                 </div>
-                <div>
-                  <img src={paymentBca} height="75px" width={"170px"} />
-                  <img
-                    src={paymentNumber}
-                    height="100px"
-                    width={"100px"}
-                    className="ms-3"
-                  />
+                <div className="d-flex">
+                  <div>
+                    <img
+                      src={paymentMandiri}
+                      height="75px"
+                      width={"170px"}
+                      className="mb-2"
+                    />
+                    <br />
+                    <img src={paymentBca} height="75px" width={"170px"} />
+                  </div>
+                  <div>
+                    <img
+                      src={paymentNumber}
+                      height="150px"
+                      width={"150px"}
+                      className="ms-3"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="input-group my-3">
@@ -144,7 +157,7 @@ const RecentBooking = ({ isUpdate }) => {
                     onChange={() => setPaymentMethod("bank")}
                   />
                   <label className="ms-3" for="bank">
-                    Transfer bank BCA
+                    Transfer bank BCA / Mandiri
                   </label>
                 </div>
               </div>
